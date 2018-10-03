@@ -259,6 +259,12 @@ class Constants {
       transfer: {
         cut: 0.1,
         min: 5
+      },
+
+      rape: {
+        odds: 50,
+        cooldown: 14400000,
+        cost: 0.25
       }
     };
 
