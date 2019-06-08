@@ -10,7 +10,7 @@ class ModifyGangWealth extends patron.Command {
         new patron.Argument({
           name: 'amount',
           key: 'amount',
-          type: 'quantity',
+          type: 'amount',
           example: '1000'
         }),
         new patron.Argument({
