@@ -27,7 +27,7 @@ class Deposit extends patron.Command {
     const received = args.transfer - transactionFee;
     const gang = await msg.client.db.gangRepo.findOne({ $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] });
 
-    const leader = msg.guild.members.get(gang.leaderId);
+    const leader = await msg.guild.members.fetch(gang.leaderId);
 
     await msg.client.db.userRepo.modifyCash(msg.dbGuild, msg.member, -args.transfer);
     await msg.client.db.gangRepo.updateGang(gang.leaderId, gang.guildId, new msg.client.db.updates.IncMoney('wealth', received));

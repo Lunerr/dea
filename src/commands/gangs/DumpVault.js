@@ -56,7 +56,7 @@ class DumpVault extends patron.Command {
     await msg.client.db.userRepo.updateUser(msg.author.id, msg.guild.id, { $inc: items.inv });
     await msg.client.db.gangRepo.updateGang(gang.leaderId, msg.guild.id, { $inc: items.vault });
 
-    const leader = msg.guild.members.get(gang.leaderId);
+    const leader = await msg.guild.members.fetch(gang.leaderId);
 
     await leader.tryDM(msg.author.tag + ' has just dumped the following into your gang\'s vault:\n' + dumped, { guild: msg.guild });
 

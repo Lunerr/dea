@@ -16,7 +16,7 @@ class RateLimitService {
           const botOwners = Constants.data.misc.ownerIds;
 
           for (let i = 0; i < botOwners.length; i++) {
-            const botOwner = msg.client.users.get(botOwners[i]);
+            const botOwner = await msg.client.users.fetch(botOwners[i]);
 
             await botOwner.tryDM(msg.author.toString() + ' (' + msg.author.id + ') was blacklisted.\nGuild: ' + msg.guild.name +
               ' (' + msg.guild.id + ')\nChannel: ' + msg.channel.name + ' (' + msg.channel.id + ')\nContent: ' + msg.content);

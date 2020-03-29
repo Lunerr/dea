@@ -36,7 +36,7 @@ class Gang extends patron.Command {
     let members = '';
 
     if (gang.leaderId && gang.leaderId) {
-      const getLeader = msg.guild.members.get(gang.leaderId);
+      const getLeader = await msg.guild.members.fetch(gang.leaderId);
 
       leader = getLeader.user.tag;
     } else {
@@ -46,7 +46,7 @@ class Gang extends patron.Command {
     if (gang.members.length) {
       for (let i = 0; i < gang.members.length; i++) {
         const member = gang.members[i];
-        const grabMembers = msg.guild.members.get(member);
+        const grabMembers = await msg.guild.members.fetch(member);
 
         members += grabMembers.user.tag + ', ';
       }
@@ -55,7 +55,7 @@ class Gang extends patron.Command {
     if (gang.elders.length) {
       for (let i = 0; i < gang.elders.length; i++) {
         const elder = gang.elders[i];
-        const grabElder = msg.guild.members.get(elder);
+        const grabElder = await msg.guild.members.fetch(elder);
 
         elders += grabElder.user.tag + ', ';
       }

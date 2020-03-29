@@ -12,7 +12,7 @@ module.exports = async client => {
 
       await client.db.muteRepo.deleteById(mutes[i]._id);
 
-      const guild = client.guilds.get(mutes[i].guildId);
+      const guild = await client.guilds.fetch(mutes[i].guildId);
 
       if (!guild) {
         continue;
@@ -25,7 +25,7 @@ module.exports = async client => {
       }
 
       const dbGuild = await client.db.guildRepo.getGuild(guild.id);
-      const role = guild.roles.get(dbGuild.roles.muted);
+      const role = await guild.roles.fetch(dbGuild.roles.muted);
 
       if (!role || !member.roles.has(dbGuild.roles.muted)) {
         continue;

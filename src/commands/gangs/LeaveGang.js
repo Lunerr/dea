@@ -18,7 +18,7 @@ class LeaveGang extends patron.Command {
       return msg.createErrorReply('you cannot leave you\'re the leader of the gang, please pass membership to another member of the gang or destroy the gang.');
     }
 
-    const leader = msg.guild.members.get(gang.leaderId);
+    const leader = await msg.guild.members.fetch(gang.leaderId);
     const update = x => new msg.client.db.updates.Pull(x, msg.author.id);
 
     if (gang.elders.includes(msg.author.id)) {

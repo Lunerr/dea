@@ -22,7 +22,7 @@ class Wanted extends patron.Command {
         break;
       }
 
-      const user = msg.client.users.get(sorted[i].userId);
+      const user = await msg.client.users.fetch(sorted[i].userId);
 
       if (!user) {
         continue;

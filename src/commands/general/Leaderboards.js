@@ -23,7 +23,7 @@ class Leaderboards extends patron.Command {
         break;
       }
 
-      const user = msg.client.users.get(users[i].userId);
+      const user = await msg.client.users.fetch(users[i].userId);
 
       if (!user) {
         continue;

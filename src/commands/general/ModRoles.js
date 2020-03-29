@@ -19,7 +19,7 @@ class ModRoles extends patron.Command {
     let description = '';
 
     for (let i = 0; i < modRoleList.length; i++) {
-      const rank = msg.guild.roles.get(modRoleList[i].id);
+      const rank = await msg.guild.roles.fetch(modRoleList[i].id);
 
       description += rank.toString() + ': ' + modRoleList[i].permissionLevel + '\n';
     }

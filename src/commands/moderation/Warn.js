@@ -30,7 +30,7 @@ class Warn extends patron.Command {
   }
 
   async run(msg, args) {
-    const role = msg.guild.roles.get(msg.dbGuild.roles.warn);
+    const role = await msg.guild.roles.fetch(msg.dbGuild.roles.warn);
 
     if (!role) {
       return msg.createErrorReply('the set warned role has been deleted. Please set a new one with the `' + Constants.data.misc.prefix + 'setwarningrole @Role` command.');
@@ -52,7 +52,7 @@ class Warn extends patron.Command {
 
         return ModerationService.tryModLog(msg.dbGuild, msg.guild, 'Warn', Constants.data.colors.warn, args.reason, msg.author, args.member.user);
       } else if (result2.size === 1) {
-        const role2 = msg.guild.roles.get(msg.dbGuild.roles.muted);
+        const role2 = await msg.guild.roles.fetch(msg.dbGuild.roles.muted);
         const formattedHours = '4 hours';
 
         await args.member.roles.add(role2);

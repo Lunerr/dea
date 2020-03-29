@@ -19,7 +19,7 @@ class Ranks extends patron.Command {
     let description = '';
 
     for (let i = 0; i < sortedRanks.length; i++) {
-      const rank = msg.guild.roles.get(sortedRanks[i].id);
+      const rank = await msg.guild.roles.fetch(sortedRanks[i].id);
 
       description += rank.toString() + ': ' + sortedRanks[i].cashRequired.USD() + '\n';
     }
@@ -31,8 +31,8 @@ class Ranks extends patron.Command {
     return msg.channel.createMessage(description, { title: 'Ranks' });
   }
 
-  addTop(numb, msg) {
-    const topRole = msg.guild.roles.get(msg.dbGuild.roles['top' + numb]);
+  async addTop(numb, msg) {
+    const topRole = await msg.guild.roles.fetch(msg.dbGuild.roles['top' + numb]);
 
     if (topRole) {
       return topRole.toString() + ': Top ' + numb + '\n';

@@ -26,7 +26,7 @@ class Poll extends patron.Command {
     const timeLeft = NumberUtil.msToTime(args.poll.length - (Date.now() - args.poll.createdAt));
 
     if (args.poll.creatorId && args.poll.creatorId) {
-      const getCreator = msg.client.users.get(args.poll.creatorId);
+      const getCreator = await msg.client.users.fetch(args.poll.creatorId);
 
       creator = getCreator.tag;
     } else {

@@ -22,7 +22,7 @@ class Help extends patron.Command {
 
   async run(msg, args) {
     if (String.isNullOrWhiteSpace(args.command)) {
-      await msg.author.DM(msg.client.user.username + ' is **THE** cleanest bot around, and you can have it in **YOUR** server simply by clicking here: ' + Constants.data.links.botInvite + '.\n\nFor all information about a module and their commands do `' + Constants.data.misc.prefix + 'module [module]`.\n\nThe `' + Constants.data.misc.prefix + 'help <command>` command may be used for view the usage and an example of any command.\n\nIf you have **ANY** questions, you may join the **Official DEA Discord Server:** ' + Constants.data.links.serverInvite + ' for instant support along with a great community.');
+      await msg.author.DM(msg.client.user.username + ' is **THE** cleanest bot around, and you can have it in **YOUR** server simply by clicking here: ' + Constants.data.links.botInvite + '.\n\nFor all information about a module and their commands do `' + Constants.data.misc.prefix + 'module [module]`.\n\nThe `' + Constants.data.misc.prefix + 'help <command>` command may be used for view the usage and an example of any command.\n\nIf you have **ANY** questions, you may join the **Official RealiLife Discord Server:** ' + Constants.data.links.serverInvite + ' for instant support along with a great community.');
 
       if (msg.channel.type !== 'dm') {
         return msg.createReply('you have been DMed with all the command information!');

@@ -24,11 +24,11 @@ class Rank extends patron.Command {
   async run(msg, args) {
     const dbUser = msg.author.id === args.member.id ? msg.dbUser : await msg.client.db.userRepo.getUser(args.member.id, msg.guild.id);
     const sortedUsers = (await msg.client.db.userRepo.findMany({ guildId: msg.guild.id })).sort((a, b) => b.cash - a.cash);
-    const rank = RankService.getRank(dbUser, msg.dbGuild, msg.guild);
+    const rank = await RankService.getRank(dbUser, msg.dbGuild, msg.guild);
     const investments = dbUser.investments.length ? dbUser.investments.map(x => x.upperFirstChar()).join(', ') : '';
-    const options = { title: args.member.user.tag + '\'s Rank', footer: { text: investments ? 'Investments: ' + investments : '' } };
+    const options = { title: args.member.user.tag + '\'s Rank', footer: { text: `#${sortedUsers.findIndex(v => v.userId === dbUser.userId + 1)}` + (investments ? '; Investments: ' + investments : '') } };
 
-    return msg.channel.createMessage('**Balance:** ' + NumberUtil.format(dbUser.cash) + '\n**Health:** ' + dbUser.health + (dbUser.bounty > 0 ? '\n**Bounty:** ' + NumberUtil.format(dbUser.bounty) : '') + '\n**Position:** #' + (sortedUsers.findIndex(v => v.userId === dbUser.userId) + 1) + '\n' + (rank ? '**Rank:** ' + rank.toString() + '\n' : ''), options);
+    return msg.channel.createMessage('**Balance:** ' + NumberUtil.format(dbUser.cash) + '\n**Health:** ' + dbUser.health + (dbUser.bounty > 0 ? '\n**Bounty:** ' + NumberUtil.format(dbUser.bounty) : '') + '\n' + (rank ? '**Rank:** ' + rank.toString() + '\n' : ''), options);
   }
 }
 

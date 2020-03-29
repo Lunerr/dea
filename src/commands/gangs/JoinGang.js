@@ -27,7 +27,7 @@ class JoinGang extends patron.Command {
       return msg.createErrorReply('sorry, this gang is too full.');
     }
 
-    const leader = msg.guild.members.get(args.gang.leaderId);
+    const leader = await msg.guild.members.fetch(args.gang.leaderId);
 
     if (!leader) {
       return msg.createReply('the leader of that gang is no longer in this server. ***RIP GANG ROFL***');

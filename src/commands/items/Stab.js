@@ -38,7 +38,7 @@ class Stab extends patron.Command {
     const roll = Random.roll();
     const dbUser = await msg.client.db.userRepo.getUser(args.member.id, msg.guild.id);
     const damage = await ItemService.reduceDamage(dbUser, args.item.damage, items);
-    const shotUser = await msg.client.users.get(args.member.id);
+    const shotUser = await await msg.client.users.fetch(args.member.id);
 
     if (args.item.crate_odds >= Random.roll()) {
       const inv = 'inventory.' + args.item.names[0];

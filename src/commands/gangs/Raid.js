@@ -36,8 +36,8 @@ class Raid extends patron.Command {
     const roll = Random.roll();
     const gang = await msg.client.db.gangRepo.findOne({ $or: [{ members: msg.author.id }, { elders: msg.author.id }, { leaderId: msg.author.id }], $and: [{ guildId: msg.guild.id }] });
 
-    const gangLeader = msg.client.users.get(gang.leaderId);
-    const raidedGangLeader = msg.client.users.get(args.gang.leaderId);
+    const gangLeader = await msg.client.users.fetch(gang.leaderId);
+    const raidedGangLeader = await msg.client.users.fetch(args.gang.leaderId);
     const membersDeduction = (args.gang.members.length + args.gang.elders.length) * 5;
     const stolen = args.raid * 2;
 

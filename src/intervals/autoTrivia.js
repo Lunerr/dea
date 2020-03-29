@@ -13,7 +13,7 @@ module.exports = async client => {
         continue;
       }
 
-      const guild = client.guilds.get(guilds[i].guildId);
+      const guild = await client.guilds.fetch(guilds[i].guildId);
 
       if (!guild || !guild.mainChannel) {
         continue;

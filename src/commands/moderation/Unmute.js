@@ -35,7 +35,7 @@ class Unmute extends patron.Command {
       return msg.createErrorReply('this user is not muted.');
     }
 
-    const role = msg.guild.roles.get(msg.dbGuild.roles.muted);
+    const role = await msg.guild.roles.fetch(msg.dbGuild.roles.muted);
 
     if (!role) {
       return msg.createErrorReply('the set muted role has been deleted. Please set a new one with the `' + Constants.data.misc.prefix + 'setmute Role` command.');

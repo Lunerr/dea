@@ -26,7 +26,7 @@ class ModerationService {
       return false;
     }
 
-    const channel = guild.channels.get(dbGuild.channels.modLog);
+    const channel = await guild.channels.fetch(dbGuild.channels.modLog);
 
     if (!channel) {
       return false;

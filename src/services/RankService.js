@@ -16,7 +16,7 @@ class RankService {
     const cash = NumberUtil.realValue(dbUser.cash);
 
     for (const rank of dbGuild.roles.rank) {
-      const role = member.guild.roles.get(rank.id);
+      const role = await member.guild.roles.fetch(rank.id);
 
       if (role && role.position < highsetRolePosition) {
         if (!member.roles.has(role.id)) {
@@ -40,21 +40,21 @@ class RankService {
     }
   }
 
-  getRank(dbUser, dbGuild, guild) {
+  async getRank(dbUser, dbGuild, guild) {
     let role;
     const cash = NumberUtil.realValue(dbUser.cash);
 
     for (const rank of dbGuild.roles.rank.sort((a, b) => a.cashRequired - b.cashRequired)) {
       if (cash >= rank.cashRequired) {
-        role = guild.roles.get(rank.id);
+        role = await guild.roles.fetch(rank.id);
       }
     }
 
     return role;
   }
 
-  topHandle(position, numb, dbGuild, highsetRolePosition, member, rolesToAdd, rolesToRemove) {
-    const role = member.guild.roles.get(dbGuild.roles['top' + numb]);
+  async topHandle(position, numb, dbGuild, highsetRolePosition, member, rolesToAdd, rolesToRemove) {
+    const role = await member.guild.roles.fetch(dbGuild.roles['top' + numb]);
 
     if (role && role.position < highsetRolePosition) {
       if (!member.roles.has(role.id)) {

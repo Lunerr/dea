@@ -15,7 +15,7 @@ module.exports = async client => {
 
       await client.db.pollRepo.deleteById(polls[i]._id);
 
-      const guild = client.guilds.get(polls[i].guildId);
+      const guild = await client.guilds.fetch(polls[i].guildId);
 
       if (!guild) {
         continue;

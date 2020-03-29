@@ -52,7 +52,7 @@ class Trade extends patron.Command {
   async run(msg, args) {
     const key = Random.nextInt(0, 2147000000).toString();
     const dbUser = await msg.client.db.userRepo.getUser(args.member.id, msg.guild.id);
-    const user = msg.client.users.get(args.member.id);
+    const user = await msg.client.users.fetch(args.member.id);
 
     if (!dbUser.inventory[args.item2.names[0]] || dbUser.inventory[args.item2.names[0]] <= 0 || dbUser.inventory[args.item2.names[0]] < args.amount2 || dbUser.inventory[args.item2.names[0]] - args.amount2 < 0) {
       return msg.createErrorReply('this user doesn\'t enough of this item.');
