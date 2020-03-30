@@ -99,7 +99,7 @@ class Constants {
         },
         game: '$help',
         prefix: '$',
-        botOwners: ['Luner#0059', 'Ash#8999'],
+        botOwners: ['Luner#0059', 'Leo Messi Fan#1443'],
         ownerIds: ['226736342745219072', '271424970796564490']
       },
 
