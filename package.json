@@ -11,7 +11,7 @@
   "license": "AGPL-3.0",
   "dependencies": {
     "discord.js": "github:discordjs/discord.js",
-    "mongodb": "^3.2.3",
+    "mongodb": "^3.1.13",
     "dotenv": "^6.1.0",
     "patron.js": "github:Lunerr/patron.js"
   },
